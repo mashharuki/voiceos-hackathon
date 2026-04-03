@@ -8,4 +8,4 @@ if [ -f "$SCRIPT_DIR/.env" ]; then
   export $(grep -v '^#' "$SCRIPT_DIR/.env" | xargs)
 fi
 
-exec "npx tsx ./packages/mcp-server/src/index.ts"
+exec npx tsx "$SCRIPT_DIR/packages/mcp-server/src/index.ts"
