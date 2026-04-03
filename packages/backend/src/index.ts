@@ -91,7 +91,8 @@ app.use("*", cors());
 
 // Serve frontend HTML
 app.get("/", (c) => {
-  const html = readFileSync(join(__dirname, "public", "index.html"), "utf-8");
+  const html = readFileSync(join(__dirname, "..", "src", "public", "index.html"), "utf-8");
+  c.header("Cache-Control", "no-store");
   return c.html(html);
 });
 
@@ -203,7 +204,23 @@ app.post("/api/deal", async (c) => {
   return c.json(state);
 });
 
+async function loadLatestFromDB(): Promise<void> {
+  if (!supabase) return;
+  const { data, error } = await supabase
+    .from("games")
+    .select("session_id, state")
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .single();
+  if (error || !data) return;
+  const state = data.state as GameState;
+  memoryStore.set(state.sessionId, state);
+  console.log(`📂 Loaded latest game from DB: ${state.sessionId} (phase: ${state.phase})`);
+}
+
 const port = Number(process.env.PORT ?? 3000);
-serve({ fetch: app.fetch, port }, () => {
-  console.log(`🎰 Voice Poker backend running on http://localhost:${port}`);
+loadLatestFromDB().then(() => {
+  serve({ fetch: app.fetch, port }, () => {
+    console.log(`🎰 Voice Poker backend running on http://localhost:${port}`);
+  });
 });

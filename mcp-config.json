@@ -1,7 +1,0 @@
-{
-  "mcpServers": {
-    "voice-poker": {
-      "command": "/Users/harukikondo/git/voiceos-hackathon/start-mcp.sh"
-    }
-  }
-}
