@@ -19,3 +19,4 @@
   - MCPでVoice OSに接続
   - 画面左側でVoice OSを開く
   - 画面右側でポーカーのプレイ動画を流す
+  - Chat GPTの GPT APPみたいにする
