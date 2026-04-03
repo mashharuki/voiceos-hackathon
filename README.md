@@ -2,6 +2,9 @@
 
 > Voice OS Hackathon Tokyo — 音声で操作するテキサスホールデムポーカー
 
+## Pitch
+[Pitch](https://docs.google.com/presentation/d/1HvSr3j_GXE8L2cW1l3g4SoD4Ps3LG-GMsbSWkGRDrFc/edit?usp=sharing)
+
 ## プロダクト概要
 
 **Voice Poker** は、音声コマンドでプレイできるテキサスホールデムポーカーゲームです。
